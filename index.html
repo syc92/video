@@ -21,6 +21,20 @@
 			margin-bottom: 5px;
 		}
 
+		.play {
+			background: url("https://img.icons8.com/material-outlined/24/000000/play-button-circled.png"), -webkit-linear-gradient(top, #cccccc, #ffffff);
+			background-repeat: no-repeat;
+			background-position: 10% center;
+			padding: 10px 10px 10px 40px;
+		}
+
+		.pause {
+			background: url("https://img.icons8.com/material-outlined/24/000000/circled-pause.png"), -webkit-linear-gradient(top, #cccccc, #ffffff);
+			background-repeat: no-repeat;
+			background-position: 10% center;
+			padding: 10px 10px 10px 40px;
+		}
+
 		/*You can not change anything in the style tag other than to add images for the buttons. */
 </style>
 </head>
@@ -67,7 +81,7 @@
 		console.log("Play Video")
 		// Play the video and update the volume.
 		videoSource.play();
-		document.querySelector('#volume').innerHTML = volumeNum;
+		document.querySelector('#volume').innerHTML = volumeNum+"%";
 	} 
 
 	function pauseVid() { 
@@ -80,14 +94,16 @@
 		// Slow the vido speed by half and log the new rate to the console. 
 		playRate *= 0.5;
 		videoSource.playbackRate = playRate;
-		console.log(playRate)
+		var displayRate = 'Speed is ' + playRate;
+		console.log(displayRate)
 	} 
 
 	function increaseSpeed() {
 		// Double the video speen and log the new rate to the console. 
 		playRate *= 2;
 		videoSource.playbackRate = playRate;
-		console.log(playRate)
+		var displayRate = 'Speed is ' + playRate;
+		console.log(displayRate)
 	} 
 
 	function mute() { 
@@ -100,11 +116,11 @@
 		// 		mute the video
 		// 		change the button text to "unmute"
 		if (videoSource.muted) {
-			console.log('unmute');
+			console.log('unmuted');
 			videoSource.muted = false;
 			document.querySelector('#mute').innerHTML = "mute";
 		} else {
-			console.log('mute');
+			console.log('muted');
 			videoSource.muted = true;
 			document.querySelector('#mute').innerHTML = "unmute";
 		}
@@ -116,10 +132,10 @@
 		videoSource.volume = volumeNum/100;
 
 		// Make sure to update the volume element.
-		document.querySelector("#volume").innerHTML = volumeNum;
+		document.querySelector("#volume").innerHTML = volumeNum+"%";
 
 		// Update the console log with the new volume as well.
-		console.log(volumeNum);
+		console.log("Volume is "+ volumeNum);
 	}
 	       
 
@@ -139,10 +155,10 @@
 	function random(){
 		// Use setProperty to change the grayscale filder and transform properties of the video.
 		// Log what the new values are to the console.
-		var newValue = String(Math.round(Math.random() * 100));
-		var newFilterValue = 'grayscale(' + newValue + '%)';
-		videoSource.style.setProperty('filter', newFilterValue);
-		console.log(newValue);
+		var newValue = String(Math.random() * 100);
+		videoSource.style.setProperty('filter', 'grayscale(' + newValue + '%)');
+		videoSource.style.setProperty('transform', 'skewX(' + newValue + 'deg)');
+		console.log("Grayscale and skewX are " + newValue);
 	}
 
 	</script> 
