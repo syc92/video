@@ -75,12 +75,12 @@
 	
 	var videoSource = document.querySelector('#myVideo');
 	var playRate = 1.0;
-	var volumeNum = document.querySelector('#volumeSlider').value;
 
 	function playVid() { 
 		console.log("Play Video")
 		// Play the video and update the volume.
 		videoSource.play();
+		let volumeNum = document.querySelector('#volumeSlider').value;
 		document.querySelector('#volume').innerHTML = volumeNum+"%";
 	} 
 
@@ -128,21 +128,20 @@
 
 	volumeSlider.oninput = function() {
 		// Change the volume (0 is off, 100 is full volume, everything else is proportionally in between)
-		volumeNum = document.querySelector('#volumeSlider').value;
-		videoSource.volume = volumeNum/100;
+		videoSource.volume = this.value/100;
 
 		// Make sure to update the volume element.
-		document.querySelector("#volume").innerHTML = volumeNum+"%";
+		document.querySelector("#volume").innerHTML = this.value+"%";
 
 		// Update the console log with the new volume as well.
-		console.log("Volume is "+ volumeNum);
+		console.log("Volume is "+ this.value);
 	}
 	       
 
 	function gray() { 
 		console.log("In grayscale")
 		// Utilize the existing grayscale class.
-		videoSource.className = 'grayscale';
+		videoSource.classList.toggle('grayscale');
 	}
 
 	function color() {
